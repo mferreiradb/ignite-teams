@@ -1,11 +1,11 @@
 import React from 'react';
 import * as Styled from './styles';
-import { Text } from 'react-native';
+import { Header } from '@components/Header';
 
 export function Groups() {
 	return (
 		<Styled.Container >
-			<Text>Teste</Text>
+			<Header />
 		</Styled.Container>
 	);
 }
