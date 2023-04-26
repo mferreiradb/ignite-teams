@@ -210,3 +210,13 @@
                 }
 
         - O if ternário verifica se as fontes da aplicação já estão carregadas. Se estiverem, irá renderizar a tela normalmente. Caso não, irá renderizar o componente de load até que as fontes seja carregadas
+
+## Icons
+
+- Utilizaremos a biblioteca `Phosphor Icons`
+
+                npm install --save phosphor-react-native
+
+- Para utilizar a biblioteca, também é necessária a instalação da `react-native-svg`
+
+                npx expo install react-native-svg
