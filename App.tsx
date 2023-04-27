@@ -1,5 +1,6 @@
 import React from 'react';
 import { Groups } from '@screens/Groups';
+import { NewGroup } from '@screens/NewGroup';
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import theme from './src/theme';
@@ -13,7 +14,7 @@ export default function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			{ fontsLoaded ? <Groups /> : <Loading />}
+			{ fontsLoaded ? <NewGroup /> : <Loading />}
 			<StatusBar
 				barStyle="light-content"
 				translucent
