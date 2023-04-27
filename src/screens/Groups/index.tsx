@@ -5,10 +5,11 @@ import { Highlight } from '@components/Hightlight';
 import { GroupCard } from '@components/GroupCard';
 import { FlatList } from 'react-native';
 import { EmptyList } from '@components/EmptyList';
+import { Button } from '@components/Button';
 
 export function Groups() {
 
-	const [ groups, setGroups ] = useState<string[]>(['Turma 1']);
+	const [ groups, setGroups ] = useState<string[]>([]);
 
 	return (
 		<Styled.Container >
@@ -29,6 +30,8 @@ export function Groups() {
 						title={item} />
 				)}
 			/>
+
+			<Button title='Criar turma' type='SECONDARY'/>
 		</Styled.Container>
 	);
 }
