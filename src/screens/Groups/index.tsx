@@ -31,7 +31,7 @@ export function Groups() {
 				)}
 			/>
 
-			<Button title='Criar turma' type='SECONDARY'/>
+			<Button title='Criar turma'/>
 		</Styled.Container>
 	);
 }
