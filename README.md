@@ -213,10 +213,55 @@
 
 ## Icons
 
-- Utilizaremos a biblioteca `Phosphor Icons`
+- Utilizaremos a biblioteca externa `Phosphor Icons`
 
                 npm install --save phosphor-react-native
 
 - Para utilizar a biblioteca, também é necessária a instalação da `react-native-svg`
 
                 npx expo install react-native-svg
+
+    - Podemos utilizá-la de duas maneiras
+
+            
+        - diretamente no componente
+
+                <House
+                    color='#fff'
+                    weight='fill'
+                />
+            
+        - Apartir do `styles.ts`
+
+                export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
+                    color: theme.COLORS.WHITE,
+                    size: 32
+                }))``;
+
+- Além disso, utilizaremos uma biblioteca nativa do expo
+
+                import { MaterialIcons } from '@expo/vector-icons';
+
+    - Podemos utilizá-la de duas maneiras
+        
+        - diretamente no componente
+
+                <MaterialIcons
+                    name='home'
+                    color='#fff'
+                    size={32}
+                />
+        
+        - Apartir do `styles.ts`
+
+                export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({
+                    size: 24,
+                    color: type === 'PRIMARY' ? theme.COLORS.GREEN_700 : theme.COLORS.RED,
+                }))``;
+
+    - Para utilizarmos a partir do `styles.ts` da melhor forma e podendo consultar os ícones durante a chamada do componente, temos de realizar a seguinte tipagem
+
+                interface Props extends TouchableOpacityProps {
+                    name: keyof typeof MaterialIcons.glyphMap; // FAZ COM QUE SEJA POSSÍVEL VERIIFICAR QUAIS OS ICONES DISPONIVEIS QUANDO REALIZARMOS O USO DO COMPONENTE
+                    type?: Styled.ButtonIconTypeStyleProps;
+                }
