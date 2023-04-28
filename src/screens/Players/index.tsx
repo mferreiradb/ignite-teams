@@ -15,7 +15,7 @@ export function Players() {
 			<Styled.Form>
 				<Input placeholder='Nome/Nick da pessoa' autoCorrect={false} />
 
-				<ButtonIcon name='web' />
+				<ButtonIcon name='add' />
 			</Styled.Form>
 		</Styled.Container>
 	);
