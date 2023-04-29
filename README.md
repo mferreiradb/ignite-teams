@@ -375,3 +375,22 @@
                         </Navigator>
                     );
                 }
+
+## SAFE AREA VIEW
+
+- "Área segura"
+
+- Serve para que nosso design do aplicativo não seja prejudicado pelo design dos aparelhos
+
+- É instalada juntamente com a navegação
+
+- Para utilizarmos, basta trocar as views que englobam toda a tela por `SafeAreaView`
+
+                import { SafeAreaView } from 'react-native-safe-area-context';
+                import styled from 'styled-components/native';
+
+                export const Container = styled(SafeAreaView)`
+                    flex: 1;
+                    background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+                    padding: 24px;
+                `;
