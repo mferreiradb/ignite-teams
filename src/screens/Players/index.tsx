@@ -9,16 +9,25 @@ import { Filter } from '@components/Filter';
 import { PlyerCard } from '@components/PlayerCard';
 import { EmptyList } from '@components/EmptyList';
 import { Button } from '@components/Button';
+import { useRoute } from '@react-navigation/native';
+
+interface RoutParams {
+	group: string;
+}
 
 export function Players() {
 	const [ team, setTeam ] = useState('Time A');
+	
 	const [ players, setPlayers] = useState([]);
+	const route = useRoute();
+
+	const { group } = route.params as RoutParams;
 
 	return (
 		<Styled.Container>
 			<Header showBackButton />
 
-			<Highlight title='Nome da turma' subtitle='Adicione sua turma e divida os times' />
+			<Highlight title={group} subtitle='Adicione sua turma e divida os times' />
 
 			<Styled.Form>
 				<Input placeholder='Nome/Nick da pessoa' autoCorrect={false} />
