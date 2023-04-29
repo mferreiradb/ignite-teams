@@ -265,3 +265,19 @@
                     name: keyof typeof MaterialIcons.glyphMap; // FAZ COM QUE SEJA POSSÍVEL VERIIFICAR QUAIS OS ICONES DISPONIVEIS QUANDO REALIZARMOS O USO DO COMPONENTE
                     type?: Styled.ButtonIconTypeStyleProps;
                 }
+
+## NAVEGAÇÃO
+
+*Instalação*
+
+- Instalação do core para uso da biblioteca `React Navigation`
+
+                npm install @react-navigation/native
+
+- Instalação de dependencias para uso em uma aplicação feita co Expo Maneged Project
+
+                npx expo install react-native-screens react-native-safe-area-context
+
+- Nesta aplicação, utilizaremos apenas a `Stack Navigation`
+
+                npm install @react-navigation/native-stack
