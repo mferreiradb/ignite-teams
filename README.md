@@ -310,3 +310,68 @@
 
     - `Navigator` é o componente que armazena as rotas
     - `Screen` é o componente que determina qual o nome da rota e qual tela ele renderiza
+
+- Em nosso `routes/index.tsx`, criamos o nosso `contexto de navegação`, que são as rotas que iremos disponibilizar para a noss aplicação
+
+    - `src/routes/index.tsx`
+
+                import React from 'react';
+                import { NavigationContainer } from '@react-navigation/native';
+                import { AppRoutes } from './app.routes';
+
+                export function Routes() {
+                    return (
+                        <NavigationContainer>
+                            <AppRoutes />
+                        </NavigationContainer>
+                    );
+                }
+
+- Desta forma, basta passar o componente de contexto no nosso `App.tsx`, e agora todas as telas poderão ser acessadas
+
+                import React from 'react';
+                import { StatusBar } from 'react-native';
+                import { ThemeProvider } from 'styled-components';
+                import theme from './src/theme';
+                import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+                import { Loading } from '@components/Loading';
+                import { Routes } from '@routes/index';
+
+                export default function App() {
+
+                    //fontsLoaded recebe um valor boolean
+                    const [ fontsLoaded ] = useFonts({ Roboto_400Regular, Roboto_700Bold});
+
+                    return (
+                        <ThemeProvider theme={theme}>
+                            { fontsLoaded ? <Routes /> : <Loading />}
+                            <StatusBar
+                                barStyle="light-content"
+                                translucent
+                                backgroundColor='transparent'
+                            />
+                        </ThemeProvider>
+                    );
+                }
+
+- Por padrão, a primeira tela a ser mostrada é a que for definida primeiro no nosso arquivo de rotas, porém, podemos passar a propriedade `initialRouteName` para definir qual a primeira tela que queremos que seja renderizada
+
+- Para remover o cabeçalho das rotas, basta passar a propriedade `screenOptions={{ headerShown: false }}` para o componente `Navigator`
+
+                import React from 'react';
+                import { createNativeStackNavigator } from '@react-navigation/native-stack';
+                import { Groups } from '@screens/Groups';
+                import { NewGroup } from '@screens/NewGroup';
+                import { Players } from '@screens/Players';
+
+                const { Navigator, Screen } = createNativeStackNavigator();
+
+                export function AppRoutes() {
+                    return (
+                        <Navigator screenOptions={{ headerShown: false }}>
+                            <Screen name="Groups" component={Groups} />
+                            <Screen name="NewGroup" component={NewGroup} />
+                            <Screen name="Players" component={Players} />
+                        </Navigator>
+                    );
+                }
