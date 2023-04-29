@@ -311,7 +311,7 @@
     - `Navigator` é o componente que armazena as rotas
     - `Screen` é o componente que determina qual o nome da rota e qual tela ele renderiza
 
-- Em nosso `routes/index.tsx`, criamos o nosso `contexto de navegação`, que são as rotas que iremos disponibilizar para a noss aplicação
+- Em nosso `routes/index.tsx`, criamos o nosso `contexto de navegação`, que são as rotas que iremos disponibilizar para a nossa aplicação
 
     - `src/routes/index.tsx`
 
