@@ -4,8 +4,16 @@ import { Header } from '@components/Header';
 import { Highlight } from '@components/Hightlight';
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
+import { useNavigation } from '@react-navigation/native';
 
 export function NewGroup() {
+
+	const navigation = useNavigation();
+
+	function handleNew() {
+		navigation.navigate('players', {group: 'teste'});
+	}
+
 	return (
 		<Styled.Container>
 			<Header showBackButton />
@@ -20,7 +28,7 @@ export function NewGroup() {
 					
 				/>
 
-				<Button style={{ marginTop: 20}} title='Criar' />
+				<Button style={{ marginTop: 20}} title='Criar' onPress={handleNew} />
 
 			</Styled.Content>
 		</Styled.Container>
