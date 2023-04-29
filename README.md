@@ -281,3 +281,32 @@
 - Nesta aplicação, utilizaremos apenas a `Stack Navigation`
 
                 npm install @react-navigation/native-stack
+
+*Configuração e uso*
+
+- Criamos uma pasta para guardarmos as rotas
+
+    `src/routes/app.routes.tsx`
+
+                import React from 'react';
+                import { createNativeStackNavigator } from '@react-navigation/native-stack';
+                import { Groups } from '@screens/Groups';
+                import { NewGroup } from '@screens/NewGroup';
+                import { Players } from '@screens/Players';
+
+                const { Navigator, Screen } = createNativeStackNavigator();
+
+                export function AppRoutes() {
+                    return (
+                        <Navigator>
+                            <Screen name="Groups" component={Groups} />
+                            <Screen name="NewGroup" component={NewGroup} />
+                            <Screen name="Players" component={Players} />
+                        </Navigator>
+                    );
+                }
+
+- Utilizamos `createNativeStackNavigator()` para criar as nossas rotas
+
+    - `Navigator` é o componente que armazena as rotas
+    - `Screen` é o componente que determina qual o nome da rota e qual tela ele renderiza
