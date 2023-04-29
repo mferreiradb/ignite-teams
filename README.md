@@ -394,3 +394,63 @@
                     background-color: ${({ theme }) => theme.COLORS.GRAY_600};
                     padding: 24px;
                 `;
+
+## Async Storage
+
+- Sistema de armazenamento baseado em chave-valor, assíncrono e persistente
+
+- Possui leitura e escrita muito rápidas
+
+- Só consegue armazenar strings
+
+    - Para isso, utilizamos `JSON.stringfy()`
+    
+                {"name":"Mauricio","idade":"20"}
+    
+- De maneira análoga, para ler os dados como formatos além de string, quando vindos do `Async Storage`, utilizamos `JSON.parse()`
+
+*Instalação*
+
+                npx expo install @react-native-async-storage/async-storage
+
+**Uso**
+
+*Funcionalidade de criar*
+
+- Criamos uma pasta na raiz do nosso projeto para gerenciarmos o armazenamento
+
+- Nos arquivos que contetão as funções de interação com o banco, criaremos sempre funções assíncronas e utilizaremos a estrutura `try...catch`
+
+- Para salvarmos os dados, utilizamos `AsyncStorage.setItem()`
+    
+    - A função recebe dois parâmetros: o primeiro será a chave, sendo uma string. A segunda será o que queremos guardar
+        
+        - Ambos os parâmetros devem ser do tipo String
+    
+    - Esta função não salva novos items, ela substitui o valor antigo por um novo valor
+
+    - Por conta disso, devemos antes buscar todos os dados daquela chave e substituir o valor por aquele valor + o novo valor através de um array
+
+*Funcionalidade de listar*
+
+- Para buscarmos dados, utilizamos `AsyncStorage.getItem()`
+
+    - A função recebe apenas um parâmetro
+
+- Antes de exibirmos os dados, devemos verificar se há dados e passar parra string
+
+                import AsyncStorage from '@react-native-async-storage/async-storage';
+                import { GROUP_COLLECTION } from '@storage/storageConfig';
+
+                export async function findAllGroups() {
+                    try {
+                        const storage = await AsyncStorage.getItem(GROUP_COLLECTION);
+
+                        const groups: string[] = storage ? JSON.parse(storage) : [];
+
+                        return groups;
+
+                    } catch (error) {
+                        throw error;
+                    }
+                }
