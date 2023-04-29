@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import * as Styled from './styles';
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Hightlight';
@@ -6,7 +6,8 @@ import { GroupCard } from '@components/GroupCard';
 import { FlatList } from 'react-native';
 import { EmptyList } from '@components/EmptyList';
 import { Button } from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { findAllGroups } from '@storage/group/findAllGroups';
 
 export function Groups() {
 
@@ -17,6 +18,21 @@ export function Groups() {
 	function handleNewGroup() {
 		navigation.navigate('newGroup');
 	}
+
+	async function fetchGroups() {
+		try {
+			const data = await findAllGroups();
+			setGroups(data);
+		} catch(error) {
+			console.log(error);
+		}
+	}
+
+	useFocusEffect(useCallback(() => {
+		console.log('Carregado hook');
+		
+		fetchGroups();
+	}, []));
 
 	return (
 		<Styled.Container >

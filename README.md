@@ -454,3 +454,20 @@
                         throw error;
                     }
                 }
+
+- Para listarmos os itens, utilizamos um hook que chama uma função de fatch
+
+                    async function fetchGroups() {
+                        try {
+                            const data = await findAllGroups();
+                            setGroups(data);
+                        } catch(error) {
+                            console.log(error);
+                        }
+                    }
+
+                    useFocusEffect(useCallback(() => {
+                        console.log('Carregado hook');
+                        
+                        fetchGroups();
+                    }, []));
