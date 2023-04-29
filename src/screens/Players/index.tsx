@@ -52,7 +52,7 @@ export function Players() {
 				contentContainerStyle={[{ paddingBottom: 100 }, players.length === 0 && { flex: 1 }]}
 			/>
 
-			<Button title='Teste' type='SECONDARY' />
+			<Button title='Remover turma' type='SECONDARY' />
 		</Styled.Container>
 	);
 }
