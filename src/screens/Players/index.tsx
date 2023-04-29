@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { FlatList } from 'react-native';
 import * as Styled from './styles';
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Hightlight';
 import { ButtonIcon } from '@components/ButtonIcon';
 import { Input } from '@components/Input';
 import { Filter } from '@components/Filter';
-import { FlatList } from 'react-native';
+import { PlyerCard } from '@components/PlayerCard';
+import { EmptyList } from '@components/EmptyList';
+import { Button } from '@components/Button';
 
 export function Players() {
 	const [ team, setTeam ] = useState('Time A');
@@ -27,7 +30,7 @@ export function Players() {
 				<FlatList
 					data={['Time A', 'Time B']}
 					keyExtractor={item => item}
-					renderItem={({ item }) => <Filter title={item} isActive={item === team} onPress={() => setTeam(item)} />}
+					renderItem={({ item }) => <Filter key={item} title={item} isActive={item === team} onPress={() => setTeam(item)} />}
 					horizontal
 				/>
 
@@ -36,7 +39,20 @@ export function Players() {
 				</Styled.PlayersNumber>
 			</Styled.HeaderList>
 
-			
+			<FlatList
+				data={players}
+				showsVerticalScrollIndicator={false}
+				keyExtractor={(item) => item}
+				renderItem={({ item }) => (
+					<PlyerCard onRemove={() => null} key={item} name={item} />
+				)}
+				ListEmptyComponent={() => (
+					<EmptyList message='Adicione novos jogadores.' />
+				)}
+				contentContainerStyle={[{ paddingBottom: 100 }, players.length === 0 && { flex: 1 }]}
+			/>
+
+			<Button title='Teste' type='SECONDARY' />
 		</Styled.Container>
 	);
 }
