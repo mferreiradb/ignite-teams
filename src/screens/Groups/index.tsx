@@ -28,9 +28,7 @@ export function Groups() {
 		}
 	}
 
-	useFocusEffect(useCallback(() => {
-		console.log('Carregado hook');
-		
+	useFocusEffect(useCallback(() => {	
 		fetchGroups();
 	}, []));
 
