@@ -1,4 +1,4 @@
-export default class AppError {
+export class AppError {
 	message: string;
 
 	constructor(message: string) {
