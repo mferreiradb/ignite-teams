@@ -4,6 +4,8 @@
 <p>Aplicação para organizar pessoas que se reúnem para jogar em times</p>
 </div>
 
+> Este aplicativo foi desenvolvido com o objetivo de colocar em prática conhecimentos fundamentais sobre Stack Navigation, Async Storage e outros. Neste Readme há anotações sobre conceitos e formas implementação de recursos.
+
 ## IMAGENS PARA DIFERENTES DENSIDADES DE TELA
 
 - Nomeamos as imagens com o mesmo nome, seguido de `@2x`, `@3x`, etc. E depois importar apenas a imagem pelo nome
