@@ -26,6 +26,7 @@ export function NewGroup() {
 			}
 
 			await createGroup(newGroup);
+			setGroup('');
 			navigation.navigate('players', { group: newGroup });
 
 		} catch(error) {
