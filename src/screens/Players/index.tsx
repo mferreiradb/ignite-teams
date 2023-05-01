@@ -81,12 +81,15 @@ export function Players() {
 	async function fetchPlayersByTeam() {
 		try {
 			setIsLoading(true);
+
 			const playersByTeam = await findPlayersByGroupAndTeam(group, team);
 			setPlayers(playersByTeam);
-			setIsLoading(false);
+			
 		} catch(error) {
 			console.log(error);
 			Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time.');
+		} finally {
+			setIsLoading(false);
 		}
 	}
 
@@ -152,7 +155,7 @@ export function Players() {
 			</Styled.HeaderList>
 
 			{
-				isLoading ? <Loading />
+				!isLoading ? <Loading />
 					: <FlatList
 						data={players}
 						showsVerticalScrollIndicator={false}

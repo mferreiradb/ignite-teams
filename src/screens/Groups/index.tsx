@@ -32,9 +32,10 @@ export function Groups() {
 			const data = await findAllGroups();
 			setGroups(data);
 			
-			setIsLoading(false);
 		} catch(error) {
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	}
 
