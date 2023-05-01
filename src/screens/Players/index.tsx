@@ -155,7 +155,7 @@ export function Players() {
 			</Styled.HeaderList>
 
 			{
-				!isLoading ? <Loading />
+				isLoading ? <Loading />
 					: <FlatList
 						data={players}
 						showsVerticalScrollIndicator={false}
