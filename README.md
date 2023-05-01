@@ -4,7 +4,30 @@
 <p>Aplicação para organizar pessoas que se reúnem para jogar em times</p>
 </div>
 
+<div align="center">
+    <img src="https://img.shields.io/badge/Version-1.0.0-blueviolet?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/Typescript-^4.9.4-blue?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/styled_components-^5.3.10-blueviolet?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/phosphor_react_native-^1.1.2-yellow?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/react_native-0.71.7-blue?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/async_storage-1.17.11-blueviolet?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/react_navigation-^6.1.6-blueviolet?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/native_stack_navigation-^6.9.12-blueviolet?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/expo-~48.0.11-white?style=for-the-badge&amp;logo=ghost" alt="Badge">
+    <img src="https://img.shields.io/badge/Status-finished-brightgreen?style=for-the-badge&amp;logo=ghost" alt="Badge">
+</div>
+
+<br>
+
+<div align="center">
+    <img src="./assets/Capa.png" alt="demonstracao">
+</div>
+
+<br><br>
+
 > Este aplicativo foi desenvolvido com o objetivo de colocar em prática conhecimentos fundamentais sobre Stack Navigation, Async Storage e outros. Neste Readme há anotações sobre conceitos e formas implementação de recursos.
+
+<br><br>
 
 ## IMAGENS PARA DIFERENTES DENSIDADES DE TELA
 
