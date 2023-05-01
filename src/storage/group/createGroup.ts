@@ -12,7 +12,7 @@ export async function createGroup(groupName: string) {
 		const groupAlreadyExists = storedGroups.includes(groupName); //BUSCA O VALOR DO PARAMETRO DENTRO DO ARRAY
 
 		if (groupAlreadyExists) {
-			throw new AppError('Group already exists.');
+			throw new AppError('Grupo já cadastrado.');
 		}
 
 		const data = JSON.stringify([...storedGroups, groupName]);
