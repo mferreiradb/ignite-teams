@@ -1,6 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, FlatList } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+
 import * as Styled from './styles';
+
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Hightlight';
 import { ButtonIcon } from '@components/ButtonIcon';
@@ -9,10 +12,12 @@ import { Filter } from '@components/Filter';
 import { PlyerCard } from '@components/PlayerCard';
 import { EmptyList } from '@components/EmptyList';
 import { Button } from '@components/Button';
-import { useFocusEffect, useRoute } from '@react-navigation/native';
-import { findPlayersByGroup } from '@storage/player/findPlayersByGroup';
-import { createPlayerByGroup } from '@storage/player/createPlayerByGroup';
+
 import { AppError } from '@utils/AppError';
+
+import { createPlayerByGroup } from '@storage/player/createPlayerByGroup';
+import { findPlayersByGroupAndTeam } from '@storage/player/findPlayersByGroupAndTeam';
+import { PlayerStorageDTO } from '@storage/player/PLAYERSTORAGEDTO';
 
 interface RoutParams {
 	group: string;
@@ -21,7 +26,7 @@ interface RoutParams {
 export function Players() {
 	const [ team, setTeam ] = useState('Time A');
 	
-	const [ players, setPlayers] = useState<string[]>([]);
+	const [ players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 
 	const [ nickName, setNickName] = useState('');
 
@@ -45,9 +50,7 @@ export function Players() {
 			
 			await createPlayerByGroup(newPlayer, group);
 
-			const players = await findPlayersByGroup(group);
-
-			console.log(players);
+			fetchPlayersByTeam();
 			
 		} catch(error) {
 			if (error instanceof AppError) {
@@ -58,18 +61,19 @@ export function Players() {
 		}
 	}
 
-	/* 	async function fetchPlayers() {
+	async function fetchPlayersByTeam() {
 		try {
-			const players = await findPlayersByGroup();
-			setPlayers(players);
+			const playersByTeam = await findPlayersByGroupAndTeam(group, team);
+			setPlayers(playersByTeam);
 		} catch(error) {
 			console.log(error);
+			Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do tmie.');
 		}
 	}
 
-	useFocusEffect(useCallback(() => {
-		fetchPlayers();
-	}, [players])); */
+	useEffect(() => {
+		fetchPlayersByTeam();
+	}, [team]);
 
 	return (
 		<Styled.Container>
@@ -104,9 +108,9 @@ export function Players() {
 			<FlatList
 				data={players}
 				showsVerticalScrollIndicator={false}
-				keyExtractor={(item) => item}
+				keyExtractor={(item) => item.name}
 				renderItem={({ item }) => (
-					<PlyerCard onRemove={() => null} key={item} name={item} />
+					<PlyerCard onRemove={() => null} key={item.name} name={item.name} />
 				)}
 				ListEmptyComponent={() => (
 					<EmptyList message='Adicione novos jogadores.' />
