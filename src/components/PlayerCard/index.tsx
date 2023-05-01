@@ -16,7 +16,11 @@ export function PlyerCard({ name, onRemove }: Props) {
 				{name}
 			</Styled.Name>
 			
-			<ButtonIcon name='close' type='SECONDARY' onPress={onRemove} />
+			<ButtonIcon
+				name='close'
+				type='SECONDARY'
+				onPress={onRemove}
+			/>
 		</Styled.Container>
 	);
 }
