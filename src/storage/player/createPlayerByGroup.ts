@@ -11,10 +11,10 @@ export async function createPlayerByGroup(newPlayer: PlayerStorageDTO, group: st
 
 		const storedPlayers = await findPlayersByGroup(group);
 
-		const playerAlreadyExists = storedPlayers.filter((player) => player.name == newPlayer.name);
+		const playerAlreadyExists = storedPlayers.filter((player) => player.name === newPlayer.name);
 
 		if(playerAlreadyExists.length > 0) {
-			throw new AppError('player already exists');
+			throw new AppError('Pessoa já cadastrada.');
 		}
 
 		const data = JSON.stringify([...storedPlayers, newPlayer]);
