@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, FlatList } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { Alert, FlatList, TextInput } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import * as Styled from './styles';
@@ -25,14 +25,13 @@ interface RoutParams {
 
 export function Players() {
 	const [ team, setTeam ] = useState('Time A');
-	
 	const [ players, setPlayers] = useState<PlayerStorageDTO[]>([]);
-
 	const [ nickName, setNickName] = useState('');
 
 	const route = useRoute();
-
 	const { group } = route.params as RoutParams;
+
+	const newPlayerNameInputRef = useRef<TextInput>(null); //valor inicial
 
 	async function handleAddPlayer() {
 
@@ -46,9 +45,11 @@ export function Players() {
 		const newPlayer = {name: trimNickName, team };
 
 		try {
-			setNickName('');
-			
 			await createPlayerByGroup(newPlayer, group);
+
+			newPlayerNameInputRef.current?.blur();
+			
+			setNickName('');
 
 			fetchPlayersByTeam();
 			
@@ -83,10 +84,13 @@ export function Players() {
 
 			<Styled.Form>
 				<Input
+					inputRef={newPlayerNameInputRef}
 					placeholder='Nome/Nick da pessoa'
 					autoCorrect={false}
 					onChangeText={setNickName}
 					value={nickName}
+					onSubmitEditing={handleAddPlayer} //Determina qual função deve ser executada ao clicar no botao de confirmar do teclado
+					returnKeyType='emergency-call' //Determina qual texto deve ser mostrado para a tecla de retorno
 				/>
 
 				<ButtonIcon name='add' onPress={handleAddPlayer} />
