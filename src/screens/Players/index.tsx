@@ -12,6 +12,7 @@ import { Filter } from '@components/Filter';
 import { PlyerCard } from '@components/PlayerCard';
 import { EmptyList } from '@components/EmptyList';
 import { Button } from '@components/Button';
+import { Loading } from '@components/Loading';
 
 import { AppError } from '@utils/AppError';
 
@@ -26,6 +27,7 @@ interface RoutParams {
 }
 
 export function Players() {
+	const [ isLoading, setIsLoading ] = useState(true);
 	const [ team, setTeam ] = useState('Time A');
 	const [ players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 	const [ nickName, setNickName] = useState('');
@@ -78,8 +80,10 @@ export function Players() {
 
 	async function fetchPlayersByTeam() {
 		try {
+			setIsLoading(true);
 			const playersByTeam = await findPlayersByGroupAndTeam(group, team);
 			setPlayers(playersByTeam);
+			setIsLoading(false);
 		} catch(error) {
 			console.log(error);
 			Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time.');
@@ -134,6 +138,7 @@ export function Players() {
 			</Styled.Form>
 
 			<Styled.HeaderList>
+
 				<FlatList
 					data={['Time A', 'Time B']}
 					keyExtractor={item => item}
@@ -146,21 +151,24 @@ export function Players() {
 				</Styled.PlayersNumber>
 			</Styled.HeaderList>
 
-			<FlatList
-				data={players}
-				showsVerticalScrollIndicator={false}
-				keyExtractor={(item) => item.name}
-				renderItem={({ item }) => (
-					<PlyerCard
-						key={item.name}
-						name={item.name}
-						onRemove={() => handleDeletePlayer(item.name)}/>
-				)}
-				ListEmptyComponent={() => (
-					<EmptyList message='Adicione novos jogadores.' />
-				)}
-				contentContainerStyle={[{ paddingBottom: 100 }, players.length === 0 && { flex: 1 }]}
-			/>
+			{
+				isLoading ? <Loading />
+					: <FlatList
+						data={players}
+						showsVerticalScrollIndicator={false}
+						keyExtractor={(item) => item.name}
+						renderItem={({ item }) => (
+							<PlyerCard
+								key={item.name}
+								name={item.name}
+								onRemove={() => handleDeletePlayer(item.name)}/>
+						)}
+						ListEmptyComponent={() => (
+							<EmptyList message='Adicione novos jogadores.' />
+						)}
+						contentContainerStyle={[{ paddingBottom: 100 }, players.length === 0 && { flex: 1 }]}
+					/>
+			}
 
 			<Button title='Remover turma' type='SECONDARY' onPress={handleRemoveGroup} />
 		</Styled.Container>
