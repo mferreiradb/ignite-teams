@@ -8,9 +8,9 @@ interface Props extends TouchableOpacityProps {
     type?: Styled.ButtonIconTypeStyleProps;
 }
 
-export function ButtonIcon({ type = 'PRIMARY', name }: Props) {
+export function ButtonIcon({ type = 'PRIMARY', name, ...rest }: Props) {
 	return (
-		<Styled.Container>
+		<Styled.Container {...rest}>
 			<Styled.Icon name={name} type={type} />
 		</Styled.Container>
 	);
